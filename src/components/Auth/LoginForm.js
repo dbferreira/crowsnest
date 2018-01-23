@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { Dimensions } from 'react-native';
-import { NavigationBar, Divider, TextInput, Text, Button, View, Icon, Spinner, ImageBackground } from '@shoutem/ui';
+import { TextInput, Text, Button, View, Icon, Spinner, ImageBackground } from '@shoutem/ui';
 import { inputChanged, loginUser } from '../../store/actions';
 
 class LoginForm extends Component {
+  static navigationOptions = {
+    headerMode: 'none',
+    header: null
+  }
+
   onButtonPress() {
+    const { navigate } = this.props.navigation;
     const { email, password } = this.props;
-    this.props.loginUser({ email, password });
+    this.props.loginUser({ email, password, navigate });
   }
 
   renderButton() {
@@ -41,7 +46,7 @@ class LoginForm extends Component {
             <Text
               style={styles.headerStyle}
             >
-            CROW'S NEST
+              CROW'S NEST
             </Text>
             <TextInput
               style={styles.inputStyle}
@@ -132,15 +137,6 @@ const mapStateToProps = ({ auth }) => {
   const { email, password, error, loading } = auth;
 
   return { email, password, error, loading };
-};
-
-LoginForm.propTypes = {
-  email: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
-  error: PropTypes.string.isRequired,
-  loading: PropTypes.bool,
-  inputChanged: PropTypes.func.isRequired,
-  loginUser: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, { inputChanged, loginUser })(LoginForm);

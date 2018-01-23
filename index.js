@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
-import App from './src/App';
+import Router from './src/Router';
 
-AppRegistry.registerComponent('crowsnest', () => App);
+AppRegistry.registerComponent('crowsnest', () => Router);

@@ -6,10 +6,17 @@ import ReduxThunk from 'redux-thunk';
 import { View } from '@shoutem/ui';
 import reducers from './store/reducers';
 import LoginForm from './components/Auth/LoginForm';
+import LoadingScreen from './components/Auth/LoadingScreen';
 
-export default class componentName extends Component {
+export default class App extends Component {
+  state = {};
+  static navigationOptions = {
+    header: null
+  }
+
   componentWillMount() {
-    const config = {
+    this.store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+    const firebaseConfig = {
       apiKey: 'AIzaSyCE9FlWq03vmu4qHOIDocX4vaD0mofcW9A',
       authDomain: 'crows-nest-1.firebaseapp.com',
       databaseURL: 'https://crows-nest-1.firebaseio.com',
@@ -18,15 +25,31 @@ export default class componentName extends Component {
       messagingSenderId: '1044256479091',
     };
 
-    firebase.initializeApp(config);
+    firebase.initializeApp(firebaseConfig);
+    this.setState({ starting: true });
   }
-  render() {
-    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
+  renderLoadingScreen() {
+    this.store.subscribe(() => {
+      const { starting } = this.store.getState().auth;
+      if (!starting) {
+        setTimeout(() => {
+          this.setState({ starting: false });
+        }, 300);
+      }
+    });
+
+    if (this.state.starting) {
+      return <LoadingScreen navigation={this.props.navigation} />;
+    }
+    return <LoginForm navigation={this.props.navigation} />;
+  }
+
+  render() {
     return (
-      <Provider store={store}>
+      <Provider store={this.store}>
         <View style={{ flex: 1 }}>
-          <LoginForm />
+          {this.renderLoadingScreen()}
         </View>
       </Provider>
     );
