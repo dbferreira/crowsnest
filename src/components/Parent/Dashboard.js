@@ -20,10 +20,18 @@ class Dashboard extends Component {
     return true;
   }
 
+  onCreateChildPress() {
+    const { navigate } = this.props.navigation;
+    navigate('ParentEditChild');
+  }
+
   renderEmptyList() {
     return (
       <View style={{ alignSelf: 'center' }}>
-        <Button style={{ ...styles.roundButtonStyle, ...styles.emptyListStyle }}>
+        <Button 
+          style={{ ...styles.roundButtonStyle, ...styles.emptyListStyle }}
+          onPress={this.onCreateChildPress.bind(this)}
+        >
           <Icon name="add-friend" style={{ color: '#fff' }} />
         </Button>
         <Text>Add Child</Text>
@@ -37,7 +45,10 @@ class Dashboard extends Component {
     }
 
     return ( // eslint-disable-line
-      <Button style={{ ...styles.roundButtonStyle, ...styles.fabButtonStyle }}>
+      <Button
+        style={{ ...styles.roundButtonStyle, ...styles.fabButtonStyle }}
+        onPress={this.onCreateChildPress.bind(this)}
+      >
         <Icon name="add-friend" style={{ color: '#fff' }} />
       </Button>
     );

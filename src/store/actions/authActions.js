@@ -4,13 +4,13 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
   LOGIN_USER,
-  FIELD_CHANGED,
+  FIELD_CHANGED_AUTH,
   LOGOUT_USER
 } from './../types';
 
-export const inputChanged = (payload) => {
+export const inputChangedLogin = (payload) => {
   return {
-    type: FIELD_CHANGED,
+    type: FIELD_CHANGED_AUTH,
     payload
   };
 };
@@ -31,11 +31,7 @@ export const loginUser = ({ email, password, navigate }) => {
 };
 
 export const autoLogin = ({ navigate }) => {
-  console.log('calling autologin');
-
   return (dispatch) => {
-    // dispatch({ type: LOGIN_USER });
-
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         loginUserSuccess(dispatch, user, navigate);
@@ -60,10 +56,13 @@ const loginUserSuccess = (dispatch, user, navigate) => {
   }, 300);
 };
 
-const logoutUser = (dispatch, user) => {
-  dispatch({
-    type: LOGOUT_USER,
-    payload: user
-  });
+const logoutUser = (dispatch, user, navigate) => {
+  setTimeout(() => {
+    dispatch({
+      type: LOGOUT_USER,
+      payload: user
+    });
+    navigate('Login');
+  }, 500);
 };
 

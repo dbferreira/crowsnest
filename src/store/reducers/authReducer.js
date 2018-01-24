@@ -1,5 +1,5 @@
 import {
-  FIELD_CHANGED,
+  FIELD_CHANGED_AUTH,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
   LOGIN_USER,
@@ -17,7 +17,7 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case FIELD_CHANGED:
+    case FIELD_CHANGED_AUTH:
       return { ...state, [action.payload.type]: action.payload.value };
     case LOGIN_USER:
       return { ...state, loading: true, error: '' };

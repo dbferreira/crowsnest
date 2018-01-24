@@ -4,9 +4,8 @@ import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
 import ReduxThunk from 'redux-thunk';
 import { View } from '@shoutem/ui';
+import Router from './Router';
 import reducers from './store/reducers';
-import LoginForm from './components/Auth/LoginForm';
-import LoadingScreen from './components/Auth/LoadingScreen';
 
 export default class App extends Component {
   state = {};
@@ -29,27 +28,11 @@ export default class App extends Component {
     this.setState({ starting: true });
   }
 
-  renderLoadingScreen() {
-    this.store.subscribe(() => {
-      const { starting } = this.store.getState().auth;
-      if (!starting) {
-        setTimeout(() => {
-          this.setState({ starting: false });
-        }, 300);
-      }
-    });
-
-    if (this.state.starting) {
-      return <LoadingScreen navigation={this.props.navigation} />;
-    }
-    return <LoginForm navigation={this.props.navigation} />;
-  }
-
   render() {
     return (
       <Provider store={this.store}>
         <View style={{ flex: 1 }}>
-          {this.renderLoadingScreen()}
+          <Router />
         </View>
       </Provider>
     );

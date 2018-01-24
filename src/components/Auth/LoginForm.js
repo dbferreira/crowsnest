@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dimensions } from 'react-native';
 import { TextInput, Text, Button, View, Icon, Spinner, ImageBackground } from '@shoutem/ui';
-import { inputChanged, loginUser } from '../../store/actions';
+import { inputChangedLogin, loginUser } from '../../store/actions';
 
 class LoginForm extends Component {
   static navigationOptions = {
@@ -51,12 +51,12 @@ class LoginForm extends Component {
             <TextInput
               style={styles.inputStyle}
               placeholder={'user@gmail.com'}
-              onChangeText={value => this.props.inputChanged({ type: 'email', value })}
+              onChangeText={value => this.props.inputChangedLogin({ type: 'email', value })}
             />
             <TextInput
               style={styles.inputStyle}
               placeholder={'passw0rd'}
-              onChangeText={value => this.props.inputChanged({ type: 'password', value })}
+              onChangeText={value => this.props.inputChangedLogin({ type: 'password', value })}
               secureTextEntry
             />
             <View style={styles.buttonHolderStyle}>
@@ -139,4 +139,4 @@ const mapStateToProps = ({ auth }) => {
   return { email, password, error, loading };
 };
 
-export default connect(mapStateToProps, { inputChanged, loginUser })(LoginForm);
+export default connect(mapStateToProps, { inputChangedLogin, loginUser })(LoginForm);
