@@ -21,15 +21,13 @@ class LoadingScreen extends Component {
         <ImageBackground
           resizeMode={'cover'}
           style={styles.imageBackgroundStyle}
-          source={{ uri: 'https://previews.123rf.com/images/dazdraperma/dazdraperma1206/dazdraperma120600002/14029416-illustration-of-palm-trees-on-desert-island.jpg' }}
+          source={require('./loginBackground.png')} // eslint-disable-line global-require
         >
-          <View style={styles.loginSectionStyle}>
-            <Text
-              style={styles.headerStyle}
-            >
-              CROW'S NEST
+          <Text
+            style={styles.headerStyle}
+          >
+            CROW&apos;S NEST
             </Text>
-          </View>
         </ImageBackground>
       </View>
     );
@@ -41,35 +39,24 @@ const win = Dimensions.get('window');
 const styles = {
   screenStyle: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center'
   },
 
   imageBackgroundStyle: {
     flexDirection: 'row',
+    alignItems: 'flex-start',
     height: win.height,
     width: win.width
   },
 
   headerStyle: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#ffffffdd',
     borderRadius: 20,
     padding: 10,
     paddingLeft: 30,
     paddingRight: 30,
+    marginTop: 100,
     fontSize: 25,
-    marginBottom: 30,
     elevation: 5
-  },
-
-  loginSectionStyle: {
-    flex: 1,
-    marginTop: 50,
-    marginLeft: 30,
-    marginRight: 30,
-    alignItems: 'center',
-    justifyContent: 'center'
   }
 };
 
