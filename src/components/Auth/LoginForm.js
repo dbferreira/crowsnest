@@ -40,7 +40,7 @@ class LoginForm extends Component {
         <ImageBackground
           resizeMode={'cover'}
           style={styles.imageBackgroundStyle}
-          source={{ uri: 'https://previews.123rf.com/images/dazdraperma/dazdraperma1206/dazdraperma120600002/14029416-illustration-of-palm-trees-on-desert-island.jpg' }}
+          source={require('./loginBackground.png')} // eslint-disable-line global-require
         >
           <View style={styles.loginSectionStyle}>
             <Text
@@ -49,15 +49,22 @@ class LoginForm extends Component {
               CROW'S NEST
             </Text>
             <TextInput
+              autoFocus
+              autoCorrect={false}
+              keyboardType={'email-address'}
               style={styles.inputStyle}
               placeholder={'user@gmail.com'}
               onChangeText={value => this.props.inputChangedLogin({ type: 'email', value })}
+              enablesReturnKeyAutomatically
             />
             <TextInput
+              autoCorrect={false}
               style={styles.inputStyle}
               placeholder={'passw0rd'}
               onChangeText={value => this.props.inputChangedLogin({ type: 'password', value })}
               secureTextEntry
+              returnKeyType={'done'}
+              enablesReturnKeyAutomatically
             />
             <View style={styles.buttonHolderStyle}>
               {this.renderButton()}
@@ -116,8 +123,8 @@ const styles = {
   },
 
   buttonStyle: {
-    borderColor: '#595959',
-    backgroundColor: '#0f9f12',
+    borderWidth: 0,
+    backgroundColor: '#2980b9',
     width: 150,
     elevation: 5,
     borderRadius: 5

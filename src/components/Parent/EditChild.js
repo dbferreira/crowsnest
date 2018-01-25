@@ -18,16 +18,20 @@ class EditChild extends Component {
     return (
       <View style={{ flex: 1, flexDirection: 'column' }}>
         <TextInput
+          autoFocus
+          autoCorrect={false}
           style={styles.inputStyle}
           placeholder={'Child name'}
           onChangeText={value => this.props.inputChangedChild({ type: 'name', value })}
         />
         <TextInput
+          keyboardType={'numeric'}
           style={styles.inputStyle}
           placeholder={'Age (years)'}
           onChangeText={value => this.props.inputChangedChild({ type: 'age', value })}
         />
         <TextInput
+          keyboardType={'numeric'}
           style={styles.inputStyle}
           placeholder={'Minutes per day'}
           onChangeText={value => this.props.inputChangedChild({ type: 'timePerDay', value })}
