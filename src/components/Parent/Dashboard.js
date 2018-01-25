@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { View, BackHandler, FlatList, Dimensions } from 'react-native';
+import { connect } from 'react-redux';
 import { Button, Icon, Text } from '@shoutem/ui';
 import ChildListItem from './ChildListItem';
+import { logoutUser } from '../../store/actions';
 
 class Dashboard extends Component {
   static navigationOptions = {
@@ -25,10 +27,15 @@ class Dashboard extends Component {
     navigate('ParentEditChild');
   }
 
+  onLogoutButtonPress() {
+    const { navigate } = this.props.navigation;
+    this.props.logoutUser({ navigate });
+  }
+
   renderEmptyList() {
     return (
       <View style={{ alignSelf: 'center' }}>
-        <Button 
+        <Button
           style={{ ...styles.roundButtonStyle, ...styles.emptyListStyle }}
           onPress={this.onCreateChildPress.bind(this)}
         >
@@ -62,6 +69,12 @@ class Dashboard extends Component {
           renderItem={({ item }) => <ChildListItem child={item} />}
           ListEmptyComponent={this.renderEmptyList.bind(this)}
         />
+        <Button
+          style={{ ...styles.roundButtonStyle }}
+          onPress={this.onLogoutButtonPress.bind(this)}
+        >
+          <Icon name="lock" style={{ color: '#fff' }} />
+        </Button>
         {this.renderFabButton()}
       </View>
     );
@@ -93,4 +106,4 @@ const styles = {
   }
 };
 
-export default Dashboard;
+export default connect(null, { logoutUser })(Dashboard);

@@ -18,14 +18,22 @@ export const inputChangedLogin = (payload) => {
 export const loginUser = ({ email, password, navigate }) => {
   return (dispatch) => {
     dispatch({ type: LOGIN_USER });
-
     firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(user => loginUserSuccess(dispatch, user, navigate))
       .catch((error) => {
         console.info('Auth error: ', error);
         firebase.auth().createUserWithEmailAndPassword(email, password)
           .then(user => loginUserSuccess(dispatch, user, navigate))
           .catch(() => loginUserFail(dispatch));
+      });
+  };
+};
+
+export const logoutUser = ({ navigate }) => {
+  return (dispatch) => {
+    firebase.auth().signOut()
+      .catch(() => {
+        dispatch({ type: LOGOUT_USER });
+        navigate('Login');
       });
   };
 };
@@ -36,7 +44,10 @@ export const autoLogin = ({ navigate }) => {
       if (user) {
         loginUserSuccess(dispatch, user, navigate);
       } else {
-        logoutUser(dispatch, user, navigate);
+        setTimeout(() => {
+          dispatch({ type: LOGOUT_USER });
+          navigate('Login');
+        }, 500);
       }
     });
   };
@@ -55,14 +66,3 @@ const loginUserSuccess = (dispatch, user, navigate) => {
     navigate('ParentDashboard');
   }, 300);
 };
-
-const logoutUser = (dispatch, user, navigate) => {
-  setTimeout(() => {
-    dispatch({
-      type: LOGOUT_USER,
-      payload: user
-    });
-    navigate('Login');
-  }, 500);
-};
-
