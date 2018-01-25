@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Dimensions } from 'react-native';
+import { Dimensions, BackHandler } from 'react-native';
 import { TextInput, Text, Button, View, Icon, Spinner, ImageBackground } from '@shoutem/ui';
 import { inputChangedLogin, loginUser } from '../../store/actions';
 
@@ -8,6 +8,18 @@ class LoginForm extends Component {
   static navigationOptions = {
     headerMode: 'none',
     header: null
+  }
+
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+  }
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+  }
+
+  onBackPress() {
+    BackHandler.exitApp();
+    return true;
   }
 
   onButtonPress() {

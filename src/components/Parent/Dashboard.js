@@ -12,13 +12,15 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+    BackHandler.addEventListener('hardwareBackPress', this.onBackPress.bind(this));
   }
   componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress.bind(this));
   }
 
   onBackPress() {
+    console.log('this.props.navigation:', this.props.navigation);
+    
     return true;
   }
 
