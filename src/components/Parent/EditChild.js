@@ -10,7 +10,8 @@ class EditChild extends Component {
   }
 
   onSaveButtonPress() {
-    this.props.createChild(this.props.child);
+    const { navigate } = this.props.navigation;
+    this.props.createChild(this.props.child, navigate);
     Keyboard.dismiss();
   }
 

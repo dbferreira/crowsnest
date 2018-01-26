@@ -19,10 +19,16 @@ export const createChild = (child, navigate) => {
     dispatch({ type: SAVE_CHILD });
     const db = firebase.firestore();
     console.log('saving child:', child);
+    const { uid } = firebase.auth().currentUser;
 
-    db.collection('parents').doc().set(child)
+    // If this does not work, use the following work-around until the issue is fixed upstream:
+    // Copy https://gist.githubusercontent.com/mikelehen/444950a35019208f3aaf18d37ab4937c/raw/85ac4cb3108d92163cb8f04fbdddcc88d4081aab/index.js over your node_modules/@firebase/webchannel-wrapper/dist/index.js
+
+    // https://github.com/firebase/firebase-js-sdk/issues/283
+
+    db.collection('parents').doc(uid).collection('children').add(child)
       .then((docRef) => {
-        console.log('Save complete:', docRef.id);
+        console.log('Save complete:', docRef);
         dispatch({ type: SAVE_COMPLETE });
         navigate('ParentDashboard');
       })
