@@ -21,7 +21,7 @@ export default class App extends Component {
       databaseURL: 'https://crows-nest-1.firebaseio.com',
       projectId: 'crows-nest-1',
       storageBucket: 'crows-nest-1.appspot.com',
-      messagingSenderId: '1044256479091',
+      messagingSenderId: '1044256479091'
     };
 
     firebase.initializeApp(firebaseConfig);

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text, } from 'react-native';
-import { TextInput, Button } from '@shoutem/ui';
-import { inputChangedChild } from '../../store/actions';
+import { View, Text, Keyboard } from 'react-native';
+import { TextInput, Button, Spinner } from '@shoutem/ui';
+import { inputChangedChild, createChild } from '../../store/actions';
 
 class EditChild extends Component {
   static navigationOptions = {
@@ -10,8 +10,15 @@ class EditChild extends Component {
   }
 
   onSaveButtonPress() {
-    const { name, age, timePerDay } = this.props.child;
-    console.log('saving child info', name, age, timePerDay);
+    this.props.createChild(this.props.child);
+    Keyboard.dismiss();
+  }
+
+  renderButtonSaving() {
+    if (this.props.saving) {
+      return <Spinner style={{ color: 'white' }} />;
+    }
+    return <Text style={{ color: '#fff' }}>Add child</Text>;
   }
 
   render() {
@@ -37,10 +44,11 @@ class EditChild extends Component {
           onChangeText={value => this.props.inputChangedChild({ type: 'timePerDay', value })}
         />
         <Button
+          disabled={!!this.props.saving}
           style={styles.buttonStyle}
           onPress={this.onSaveButtonPress.bind(this)}
         >
-          <Text style={{ color: '#fff' }}>Add child</Text>
+          {this.renderButtonSaving()}
         </Button>
       </View>
     );
@@ -67,9 +75,9 @@ const styles = {
 };
 
 const mapStateToProps = ({ parent }) => {
-  const { child } = parent;
+  const { child, saving } = parent;
 
-  return { child };
+  return { child, saving };
 };
 
-export default connect(mapStateToProps, { inputChangedChild })(EditChild);
+export default connect(mapStateToProps, { inputChangedChild, createChild })(EditChild);

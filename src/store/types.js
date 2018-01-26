@@ -5,3 +5,5 @@ export const LOGIN_USER = 'login_user';
 export const LOGOUT_USER = 'logout_user';
 
 export const FIELD_CHANGED_PARENT = 'field_changed_parent';
+export const SAVE_CHILD = 'save_child';
+export const SAVE_COMPLETE = 'save_child_complete';

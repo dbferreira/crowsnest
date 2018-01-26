@@ -20,7 +20,7 @@ class Dashboard extends Component {
 
   onBackPress() {
     console.log('this.props.navigation:', this.props.navigation);
-    
+
     return true;
   }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Dimensions, BackHandler } from 'react-native';
+import { Dimensions, BackHandler, Keyboard } from 'react-native';
 import { TextInput, Text, Button, View, Icon, Spinner, ImageBackground } from '@shoutem/ui';
 import { inputChangedLogin, loginUser } from '../../store/actions';
 
@@ -26,6 +26,7 @@ class LoginForm extends Component {
     const { navigate } = this.props.navigation;
     const { email, password } = this.props;
     this.props.loginUser({ email, password, navigate });
+    Keyboard.dismiss();
   }
 
   renderButton() {
@@ -58,11 +59,12 @@ class LoginForm extends Component {
             <Text
               style={styles.headerStyle}
             >
-              CROW'S NEST
+              CROW&apos;S NEST
             </Text>
             <TextInput
               autoFocus
               autoCorrect={false}
+              returnKeyType={'next'}
               keyboardType={'email-address'}
               style={styles.inputStyle}
               placeholder={'user@gmail.com'}
