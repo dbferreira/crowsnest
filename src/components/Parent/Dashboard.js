@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
-import { View, BackHandler, FlatList, Dimensions } from 'react-native';
+import { View, BackHandler, FlatList, Dimensions, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Icon, Text } from '@shoutem/ui';
 import ChildListItem from './ChildListItem';
-import { logoutUser } from '../../store/actions';
+import { logoutUser, getChildren, setActiveChild } from '../../store/actions';
 
 class Dashboard extends Component {
   static navigationOptions = {
     title: 'Dashboard',
     headerLeft: null
+  }
+
+  componentWillMount() {
+    this.props.getChildren();
   }
 
   componentDidMount() {
@@ -26,7 +30,7 @@ class Dashboard extends Component {
 
   onCreateChildPress() {
     const { navigate } = this.props.navigation;
-    navigate('ParentEditChild');
+    this.props.setActiveChild({}, navigate);
   }
 
   onLogoutButtonPress() {
@@ -49,7 +53,7 @@ class Dashboard extends Component {
   }
 
   renderFabButton() {
-    if (!this.data) {
+    if (!this.props.children.length) {
       return;
     }
 
@@ -64,11 +68,19 @@ class Dashboard extends Component {
   }
 
   render() {
+    if (this.props.loading) {
+      return <ActivityIndicator size="large" style={styles.loadingSpinnerStyle} />;
+    }
+
     return (
       <View style={{ height: win.height - 80 }}>
         <FlatList
-          data={[]}
-          renderItem={({ item }) => <ChildListItem child={item} />}
+          data={this.props.children}
+          renderItem={({ item }) =>
+            <ChildListItem
+              child={item}
+              navigation={this.props.navigation}
+            />}
           ListEmptyComponent={this.renderEmptyList.bind(this)}
         />
         <Button
@@ -105,7 +117,22 @@ const styles = {
     alignSelf: 'center',
     marginTop: 60,
     marginBottom: 10
+  },
+
+  loadingSpinnerStyle: {
+    width: 100,
+    height: 100,
+    marginTop: 50,
+    alignSelf: 'center'
   }
 };
 
-export default connect(null, { logoutUser })(Dashboard);
+
+const mapStateToProps = ({ parent }) => {
+  const { children, loading } = parent;
+
+  return { children, loading };
+};
+
+
+export default connect(mapStateToProps, { logoutUser, getChildren, setActiveChild })(Dashboard);

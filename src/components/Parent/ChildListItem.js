@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
+import { setActiveChild } from '../../store/actions';
 
 class ChildListItem extends Component {
   onPress() {
-    console.log('pressed on ', this.props.child.name);
+    const { navigate } = this.props.navigation;
+    this.props.setActiveChild(this.props.child, navigate);
   }
 
   render() {
@@ -38,4 +41,4 @@ const styles = {
   }
 };
 
-export default ChildListItem;
+export default connect(null, { setActiveChild })(ChildListItem);
