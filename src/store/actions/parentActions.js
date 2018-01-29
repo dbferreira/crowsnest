@@ -32,14 +32,14 @@ export const createChild = (child, navigate) => {
       childrenRef.add(child);
       // .then(() => {
       dispatch({ type: SAVE_COMPLETE });
-      navigate('ParentDashboard');
+      navigate('ParentHome');
       // })
       // .catch(error => console.log('create error is', error));
     } else {
       childrenRef.doc(child.key).update(child);
       // .then(() => {
       dispatch({ type: SAVE_COMPLETE });
-      navigate('ParentDashboard');
+      navigate('ParentHome');
       // })
       // .catch(error => console.log('update error is', error));
     }
@@ -55,7 +55,7 @@ export const deleteChild = (child, navigate) => {
       .delete();
     // .then(() => {
     dispatch({ type: SAVE_COMPLETE });
-    navigate('ParentDashboard');
+    navigate('ParentHome');
     // })
     // .catch(error => console.log('delete error is', error));
   };

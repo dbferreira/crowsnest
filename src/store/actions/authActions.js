@@ -63,6 +63,6 @@ const loginUserSuccess = (dispatch, user, navigate) => {
       type: LOGIN_USER_SUCCESS,
       payload: user
     });
-    navigate('ParentDashboard');
+    navigate('ParentHome');
   }, 300);
 };

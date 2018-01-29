@@ -1,4 +1,4 @@
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, TabNavigator } from 'react-navigation';
 import ParentDashboard from './components/Parent/Dashboard';
 import ParentActivities from './components/Parent/Activities';
 import ParentEditChild from './components/Parent/EditChild';
@@ -13,15 +13,24 @@ const routerSettings = {
   transitionConfig: () => ({ // This will remove animations, but make navigtion a lot faster
     transitionSpec: {
       duration: 0,
-    },
-  }),
+    }
+  })
 };
+
+const parentDashboardTab = TabNavigator({
+  ParentDashboard: { screen: ParentDashboard },
+  ParentActivities: { screen: ParentActivities }
+});
 
 const Router = StackNavigator({
   LoadingScreen: { screen: LoadingScreen },
   Login: { screen: LoginForm },
-  ParentDashboard: { screen: ParentDashboard },
-  ParentActivities: { screen: ParentActivities },
+  ParentHome: {
+    screen: parentDashboardTab,
+    navigationOptions: {
+      header: null
+    }
+  },
   ParentEditChild: { screen: ParentEditChild }
 }, routerSettings);
 
