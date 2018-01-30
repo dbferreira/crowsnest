@@ -7,8 +7,7 @@ import { logoutUser, getChildren, setActiveChild } from '../../store/actions';
 
 class Dashboard extends Component {
   static navigationOptions = {
-    title: 'Dashboard',
-    headerLeft: null
+    title: 'Children'
   }
 
   componentWillMount() {

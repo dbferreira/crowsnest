@@ -1,5 +1,7 @@
+import React from 'react';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import ParentDashboard from './components/Parent/Dashboard';
+import ParentDashboardHeaderButton from './components/Parent/DashboardHeaderButton';
 import ParentActivities from './components/Parent/Activities';
 import ParentEditChild from './components/Parent/EditChild';
 import LoginForm from './components/Auth/LoginForm';
@@ -28,7 +30,9 @@ const Router = StackNavigator({
   ParentHome: {
     screen: parentDashboardTab,
     navigationOptions: {
-      header: null
+      headerLeft: null,
+      title: 'Crow\'s Nest',
+      headerRight: <ParentDashboardHeaderButton />
     }
   },
   ParentEditChild: { screen: ParentEditChild }

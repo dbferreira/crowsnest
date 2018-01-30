@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { setActiveChild } from '../../store/actions';
 
-class ChildListItem extends Component {
+class ChildListItem extends PureComponent {
   onPress() {
     const { navigate } = this.props.navigation;
     this.props.setActiveChild(this.props.child, navigate);
