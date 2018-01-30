@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { View, BackHandler, FlatList, Dimensions, ActivityIndicator } from 'react-native';
+import { View, BackHandler, FlatList, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Icon, Text } from '@shoutem/ui';
 import ChildListItem from './ChildListItem';
 import { logoutUser, getChildren, setActiveChild } from '../../store/actions';
 
 class Dashboard extends Component {
+  state = {};
+
   static navigationOptions = {
     title: 'Children'
   }
@@ -72,7 +74,7 @@ class Dashboard extends Component {
     }
 
     return (
-      <View style={{ height: win.height - 80 }}>
+      <View style={{ height: this.props.screen.height - 105 }}>
         <FlatList
           data={this.props.children}
           renderItem={({ item }) =>
@@ -93,8 +95,6 @@ class Dashboard extends Component {
     );
   }
 }
-
-const win = Dimensions.get('window');
 
 const styles = {
   roundButtonStyle: {
@@ -127,10 +127,11 @@ const styles = {
 };
 
 
-const mapStateToProps = ({ parent }) => {
+const mapStateToProps = ({ parent, auth }) => {
   const { children, loading } = parent;
+  const { screen } = auth;
 
-  return { children, loading };
+  return { children, loading, screen };
 };
 
 

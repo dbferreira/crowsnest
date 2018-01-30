@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
-import {  View, Text, } from 'react-native';
+import { Icon, TouchableOpacity } from '@shoutem/ui';
 
 export default class DashboardHeaderButton extends Component {
+  showSettings() {
+    console.log('Show settings...');
+  }
+
   render() {
     return (
-      <View>
-        <Text> Settings </Text>
-      </View>
+      <TouchableOpacity onPress={this.showSettings.bind(this)}>
+        <Icon name="more-horizontal" style={styles.iconStyle} />
+      </TouchableOpacity>
     );
   }
 }
+
+const styles = {
+  iconStyle: {
+    marginRight: 10
+  }
+};
 
