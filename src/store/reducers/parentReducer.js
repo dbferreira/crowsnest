@@ -3,7 +3,8 @@ import {
   SAVE_COMPLETE,
   SAVE_CHILD,
   UPDATE_CHILDREN,
-  SET_ACTIVE_CHILD
+  SET_ACTIVE_CHILD,
+  SET_ACTIVE_ACTIVITY
 } from '../types';
 
 const INITIAL_STATE = {
@@ -24,6 +25,8 @@ export default (state = INITIAL_STATE, action) => {
     case UPDATE_CHILDREN:
       return { ...state, children: action.payload, loading: false };
     case SET_ACTIVE_CHILD:
+      return { ...state, child: action.payload };
+    case SET_ACTIVE_ACTIVITY:
       return { ...state, child: action.payload };
     default:
       return state;

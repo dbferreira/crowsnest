@@ -19,10 +19,25 @@ const routerSettings = {
   })
 };
 
+const styles = {
+  tabBarStyle: {
+    backgroundColor: 'red'
+  }
+};
+
 const parentDashboardTab = TabNavigator({
   ParentDashboard: { screen: ParentDashboard },
   ParentActivities: { screen: ParentActivities }
-});
+},
+  {
+    tabBarPosition: 'top',
+    animationEnabled: true,
+    tabBarOptions: {
+      activeTintColor: 'white',
+    },
+  });
+
+  // https://reactnavigation.org/docs/navigators/tab
 
 const Router = StackNavigator({
   LoadingScreen: { screen: LoadingScreen },

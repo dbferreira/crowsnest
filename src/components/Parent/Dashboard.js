@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, BackHandler, FlatList, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Icon, Text } from '@shoutem/ui';
-import ChildListItem from './ChildListItem';
+import BasicListItem from './BasicListItem';
 import { logoutUser, getChildren, setActiveChild } from '../../store/actions';
 
 class Dashboard extends Component {
@@ -37,6 +37,11 @@ class Dashboard extends Component {
   onLogoutButtonPress() {
     const { navigate } = this.props.navigation;
     this.props.logoutUser({ navigate });
+  }
+
+  onChildPress(child) {
+    const { navigate } = this.props.navigation;
+    this.props.setActiveChild(child, navigate);
   }
 
   renderEmptyList() {
@@ -78,9 +83,10 @@ class Dashboard extends Component {
         <FlatList
           data={this.props.children}
           renderItem={({ item }) =>
-            <ChildListItem
-              child={item}
-              navigation={this.props.navigation}
+            <BasicListItem
+              item={item}
+              labelKey='name'
+              onPress={this.onChildPress.bind(this)}
             />}
           ListEmptyComponent={this.renderEmptyList.bind(this)}
         />

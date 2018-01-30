@@ -12,3 +12,4 @@ export const SAVE_CHILD = 'save_child';
 export const SAVE_COMPLETE = 'save_child_complete';
 export const UPDATE_CHILDREN = 'update_children';
 export const SET_ACTIVE_CHILD = 'set_active_child';
+export const SET_ACTIVE_ACTIVITY = 'set_active_activity';

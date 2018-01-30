@@ -1,23 +1,20 @@
 import React, { PureComponent } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
-import { connect } from 'react-redux';
-import { setActiveChild } from '../../store/actions';
 
-class ChildListItem extends PureComponent {
-  onPress() {
-    const { navigate } = this.props.navigation;
-    this.props.setActiveChild(this.props.child, navigate);
+export default class BasicListItem extends PureComponent {
+  handlePress() {
+    this.props.onPress(this.props.item);
   }
 
   render() {
-    const { name } = this.props.child;
+    const { item, labelKey } = this.props;
     return (
       <TouchableOpacity
-        onPress={this.onPress.bind(this)}
+        onPress={this.handlePress.bind(this)}
         style={styles.itemStyle}
-        key={name}
+        key={item[labelKey]}
       >
-        <Text style={styles.nameStyle}>{name}</Text>
+        <Text style={styles.nameStyle}>{item[labelKey]}</Text>
       </TouchableOpacity>
     );
   }
@@ -40,5 +37,3 @@ const styles = {
     fontSize: 16
   }
 };
-
-export default connect(null, { setActiveChild })(ChildListItem);

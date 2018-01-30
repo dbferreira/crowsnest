@@ -4,7 +4,8 @@ import {
   SAVE_CHILD,
   SAVE_COMPLETE,
   UPDATE_CHILDREN,
-  SET_ACTIVE_CHILD
+  SET_ACTIVE_CHILD,
+  SET_ACTIVE_ACTIVITY
 } from './../types';
 
 export const inputChangedChild = (payload) => {
@@ -76,4 +77,9 @@ export const getChildren = () => {
 export const setActiveChild = (child, navigate) => {
   navigate('ParentEditChild');
   return { type: SET_ACTIVE_CHILD, payload: child };
+};
+
+export const setActiveActivity = (activity, navigate) => {
+  navigate('ParentEditActivity');
+  return { type: SET_ACTIVE_ACTIVITY, payload: activity };
 };
