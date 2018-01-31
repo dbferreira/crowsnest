@@ -9,7 +9,10 @@ class Activities extends Component {
   state = {};
 
   static navigationOptions = {
-    title: 'Activities'
+    title: 'Activities',
+    tabBarIcon: ({ tintColor }) => (
+      <Icon name="restaurant-menu" style={{ color: tintColor }}/>
+    ),
   }
 
   componentWillMount() {

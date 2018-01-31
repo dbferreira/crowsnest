@@ -19,25 +19,33 @@ const routerSettings = {
   })
 };
 
-const styles = {
-  tabBarStyle: {
-    backgroundColor: 'red'
-  }
+const TabBarOptions = {
+  tabBarPosition: 'bottom',
+  animationEnabled: true,
+  tabBarOptions: {
+    activeTintColor: '#555555',
+    inactiveTintColor: '#aaaaaa',
+    showLabel: false,
+    showIcon: true,
+    tabStyle: {
+    },
+    indicatorStyle: {
+      backgroundColor: '#3498db'
+    },
+    style: {
+      backgroundColor: 'white',
+      borderTopWidth: 1,
+      borderTopColor: '#cccccc'
+    },
+  },
 };
 
 const parentDashboardTab = TabNavigator({
   ParentDashboard: { screen: ParentDashboard },
   ParentActivities: { screen: ParentActivities }
-},
-  {
-    tabBarPosition: 'top',
-    animationEnabled: true,
-    tabBarOptions: {
-      activeTintColor: 'white',
-    },
-  });
+}, TabBarOptions);
 
-  // https://reactnavigation.org/docs/navigators/tab
+// https://reactnavigation.org/docs/navigators/tab
 
 const Router = StackNavigator({
   LoadingScreen: { screen: LoadingScreen },
@@ -46,7 +54,6 @@ const Router = StackNavigator({
     screen: parentDashboardTab,
     navigationOptions: {
       headerLeft: null,
-      title: 'Crow\'s Nest',
       headerRight: <ParentDashboardHeaderButton />
     }
   },

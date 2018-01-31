@@ -9,7 +9,10 @@ class Dashboard extends Component {
   state = {};
 
   static navigationOptions = {
-    title: 'Children'
+    title: 'Children',
+    tabBarIcon: ({ tintColor }) => (
+      <Icon name="users" style={{ color: tintColor }}/>
+    ),
   }
 
   componentWillMount() {
