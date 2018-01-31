@@ -11,7 +11,7 @@ class Activities extends Component {
   static navigationOptions = {
     title: 'Activities',
     tabBarIcon: ({ tintColor }) => (
-      <Icon name="restaurant-menu" style={{ color: tintColor }}/>
+      <Icon name="restaurant-menu" style={{ color: tintColor }} />
     ),
   }
 
@@ -71,13 +71,20 @@ class Activities extends Component {
     );
   }
 
+  getContainerHeight() {
+    if (this.props.screen) {
+      return this.props.screen.height - 105;
+    }
+    return 500;
+  }
+
   render() {
     if (this.props.loading) {
       return <ActivityIndicator size="large" style={styles.loadingSpinnerStyle} />;
     }
 
     return (
-      <View style={{ height: this.props.screen.height - 105 }}>
+      <View style={{ height: this.getContainerHeight() }}>
         <FlatList
           data={this.props.children}
           renderItem={({ item }) =>

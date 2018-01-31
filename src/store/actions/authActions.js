@@ -1,5 +1,5 @@
 import firebase from 'react-native-firebase';
-// import { Actions } from 'react-native-router-flux';
+import { NavigationActions } from 'react-navigation';
 import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
@@ -28,12 +28,14 @@ export const loginUser = ({ email, password, navigate }) => {
   };
 };
 
-export const logoutUser = ({ navigate }) => {
+export const logoutUser = () => {
   return (dispatch) => {
     firebase.auth().signOut()
       .catch(() => {
         dispatch({ type: LOGOUT_USER });
-        navigate('Login');
+        NavigationActions.navigate({
+          routeName: 'Login'
+        });
       });
   };
 };

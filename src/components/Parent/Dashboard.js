@@ -3,7 +3,7 @@ import { View, BackHandler, FlatList, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Icon, Text } from '@shoutem/ui';
 import BasicListItem from './BasicListItem';
-import { logoutUser, getChildren, setActiveChild } from '../../store/actions';
+import { getChildren, setActiveChild } from '../../store/actions';
 
 class Dashboard extends Component {
   state = {};
@@ -11,7 +11,7 @@ class Dashboard extends Component {
   static navigationOptions = {
     title: 'Children',
     tabBarIcon: ({ tintColor }) => (
-      <Icon name="users" style={{ color: tintColor }}/>
+      <Icon name="users" style={{ color: tintColor }} />
     ),
   }
 
@@ -35,11 +35,6 @@ class Dashboard extends Component {
   onCreateChildPress() {
     const { navigate } = this.props.navigation;
     this.props.setActiveChild({}, navigate);
-  }
-
-  onLogoutButtonPress() {
-    const { navigate } = this.props.navigation;
-    this.props.logoutUser({ navigate });
   }
 
   onChildPress(child) {
@@ -76,13 +71,20 @@ class Dashboard extends Component {
     );
   }
 
+  getContainerHeight() {
+    if (this.props.screen) {
+      return this.props.screen.height - 105;
+    }
+    return 500;
+  }
+
   render() {
     if (this.props.loading) {
       return <ActivityIndicator size="large" style={styles.loadingSpinnerStyle} />;
     }
 
     return (
-      <View style={{ height: this.props.screen.height - 105 }}>
+      <View style={{ height: this.getContainerHeight() }}>
         <FlatList
           data={this.props.children}
           renderItem={({ item }) =>
@@ -93,12 +95,6 @@ class Dashboard extends Component {
             />}
           ListEmptyComponent={this.renderEmptyList.bind(this)}
         />
-        <Button
-          style={{ ...styles.roundButtonStyle }}
-          onPress={this.onLogoutButtonPress.bind(this)}
-        >
-          <Icon name="lock" style={{ color: '#fff' }} />
-        </Button>
         {this.renderFabButton()}
       </View>
     );
@@ -144,4 +140,4 @@ const mapStateToProps = ({ parent, auth }) => {
 };
 
 
-export default connect(mapStateToProps, { logoutUser, getChildren, setActiveChild })(Dashboard);
+export default connect(mapStateToProps, { getChildren, setActiveChild })(Dashboard);

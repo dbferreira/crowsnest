@@ -5,9 +5,15 @@ import { TextInput, Text, Button, View, Icon, Spinner, ImageBackground } from '@
 import { inputChangedLogin, loginUser } from '../../store/actions';
 
 class LoginForm extends Component {
+  state = {};
+
   static navigationOptions = {
     headerMode: 'none',
     header: null
+  }
+
+  componentWillMount() {
+    this.setState({ dimensions: Dimensions.get('window') });
   }
 
   componentDidMount() {
@@ -52,7 +58,7 @@ class LoginForm extends Component {
       <View style={styles.screenStyle}>
         <ImageBackground
           resizeMode={'cover'}
-          style={styles.imageBackgroundStyle}
+          style={{ ...styles.imageBackgroundStyle, height: this.state.dimensions.height, width: this.state.dimensions.width }}
           source={require('./loginBackground.png')} // eslint-disable-line global-require
         >
           <View style={styles.loginSectionStyle}>
@@ -62,7 +68,6 @@ class LoginForm extends Component {
               CROW&apos;S NEST
             </Text>
             <TextInput
-              autoFocus
               autoCorrect={false}
               returnKeyType={'next'}
               keyboardType={'email-address'}
@@ -90,8 +95,6 @@ class LoginForm extends Component {
   }
 }
 
-const win = Dimensions.get('window');
-
 const styles = {
   screenStyle: {
     flex: 1,
@@ -101,9 +104,7 @@ const styles = {
   },
 
   imageBackgroundStyle: {
-    flexDirection: 'row',
-    height: win.height,
-    width: win.width
+    flexDirection: 'row'
   },
 
   headerStyle: {
