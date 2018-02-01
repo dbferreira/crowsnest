@@ -3,7 +3,7 @@ import { View, BackHandler, FlatList, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Icon, Text } from '@shoutem/ui';
 import BasicListItem from './BasicListItem';
-import { logoutUser, getChildren, setActiveActivity } from '../../store/actions';
+import { getActivities, setActiveActivity } from '../../store/actions';
 
 class Activities extends Component {
   state = {};
@@ -16,7 +16,7 @@ class Activities extends Component {
   }
 
   componentWillMount() {
-    this.props.getChildren();
+    this.props.getActivities();
   }
 
   componentDidMount() {
@@ -37,9 +37,9 @@ class Activities extends Component {
     this.props.setActiveActivity({}, navigate);
   }
 
-  onActivityPress(child) {
+  onActivityPress(activity) {
     const { navigate } = this.props.navigation;
-    this.props.setActiveActivity(child, navigate);
+    this.props.setActiveActivity(activity, navigate);
   }
 
   renderEmptyList() {
@@ -57,7 +57,7 @@ class Activities extends Component {
   }
 
   renderFabButton() {
-    if (!this.props.children.length) {
+    if (!this.props.activities.length) {
       return;
     }
 
@@ -86,10 +86,11 @@ class Activities extends Component {
     return (
       <View style={{ height: this.getContainerHeight() }}>
         <FlatList
-          data={this.props.children}
+          data={this.props.activities}
           renderItem={({ item }) =>
             <BasicListItem
               item={item}
+              detailsField='reward'
               labelKey='name'
               onPress={this.onActivityPress.bind(this)}
             />}
@@ -133,11 +134,11 @@ const styles = {
 
 
 const mapStateToProps = ({ parent, auth }) => {
-  const { children, loading } = parent;
+  const { activities, loading } = parent;
   const { screen } = auth;
 
-  return { children, loading, screen };
+  return { activities, loading, screen };
 };
 
 
-export default connect(mapStateToProps, { logoutUser, getChildren, setActiveActivity })(Activities);
+export default connect(mapStateToProps, { getActivities, setActiveActivity })(Activities);

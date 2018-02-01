@@ -4,6 +4,7 @@ import ParentDashboard from './components/Parent/Dashboard';
 import ParentDashboardHeaderButton from './components/Parent/DashboardHeaderButton';
 import ParentActivities from './components/Parent/Activities';
 import ParentEditChild from './components/Parent/EditChild';
+import ParentEditActivity from './components/Parent/EditActivity';
 import LoginForm from './components/Auth/LoginForm';
 import LoadingScreen from './components/Auth/LoadingScreen';
 
@@ -23,14 +24,14 @@ const TabBarOptions = {
   tabBarPosition: 'bottom',
   animationEnabled: true,
   tabBarOptions: {
-    activeTintColor: '#555555',
+    activeTintColor: '#3498db',
     inactiveTintColor: '#aaaaaa',
     showLabel: false,
     showIcon: true,
     tabStyle: {
     },
     indicatorStyle: {
-      backgroundColor: '#3498db'
+      backgroundColor: '#3498db00'
     },
     style: {
       backgroundColor: 'white',
@@ -57,7 +58,8 @@ const Router = StackNavigator({
       headerRight: <ParentDashboardHeaderButton />
     }
   },
-  ParentEditChild: { screen: ParentEditChild }
+  ParentEditChild: { screen: ParentEditChild },
+  ParentEditActivity: { screen: ParentEditActivity }
 }, routerSettings);
 
 export default Router;

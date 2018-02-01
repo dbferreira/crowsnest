@@ -6,6 +6,16 @@ export default class BasicListItem extends PureComponent {
     this.props.onPress(this.props.item);
   }
 
+  renderDetails() {
+    const { detailsField, item } = this.props;
+    if (detailsField) {
+      return (
+        <Text style={styles.detailsFieldStyle}>{item[detailsField]}</Text>
+      );
+    }
+    return;
+  }
+
   render() {
     const { item, labelKey } = this.props;
     return (
@@ -15,6 +25,7 @@ export default class BasicListItem extends PureComponent {
         key={item[labelKey]}
       >
         <Text style={styles.nameStyle}>{item[labelKey]}</Text>
+        {this.renderDetails()}
       </TouchableOpacity>
     );
   }
@@ -30,7 +41,14 @@ const styles = {
     justifyContent: 'flex-start',
     flexDirection: 'row',
     borderColor: '#ddd',
-    position: 'relative'
+    position: 'relative',
+    flex: 1
+  },
+
+  detailsFieldStyle: {
+    position: 'absolute',
+    alignSelf: 'center',
+    right: 10
   },
 
   nameStyle: {

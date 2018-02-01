@@ -26,15 +26,22 @@ class OptionsModal extends Component {
             onPress={this.logout.bind(this)}
             style={styles.itemStyle}
           >
-            <Icon name="lock" style={{ color: '#aaa' }} />
-            <Text>LOGOUT</Text>
+            <Icon name="user-profile" style={styles.itemIconStyle} />
+            <Text style={styles.itemTextStyle}>LOGIN AS CHILD</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={this.logout.bind(this)}
+            style={styles.itemStyle}
+          >
+            <Icon name="lock" style={styles.itemIconStyle} />
+            <Text style={styles.itemTextStyle}>LOGOUT</Text>
           </TouchableOpacity>
         </View>
         <View style={{ flex: 1 }}>
           <TouchableOpacity
             onPress={this.closeModalDialog.bind(this)}
           >
-            <Icon name="close" style={{ color: '#aaa' }} />
+            <Icon name="close" style={{ color: '#3498db' }} />
           </TouchableOpacity>
         </View>
       </View>
@@ -63,6 +70,15 @@ const styles = {
     flexDirection: 'row',
     position: 'relative',
     borderColor: '#eeeeee'
+  },
+
+  itemIconStyle: {
+    color: '#aaa'
+  },
+
+  itemTextStyle: {
+    alignSelf: 'center',
+    marginLeft: 10
   }
 
 };

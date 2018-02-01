@@ -2,32 +2,32 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, Text, Keyboard } from 'react-native';
 import { TextInput, Button, Spinner } from '@shoutem/ui';
-import { inputChangedChild, createChild, deleteChild } from '../../store/actions';
+import { inputChangedActivity, createActivity, deleteActivity } from '../../store/actions';
 
 class EditActivity extends Component {
   state = {
     isCreate: true
   };
   static navigationOptions = {
-    title: 'Child'
+    title: 'Activity'
   }
 
   componentWillMount() {
-    if (this.props.child.name) {
+    if (this.props.activity.name) {
       this.setState({ isCreate: false });
     }
   }
 
   onSaveButtonPress() {
     const { navigate } = this.props.navigation;
-    this.props.createChild(this.props.child, navigate, this.state.isCreate);
+    this.props.createActivity(this.props.activity, navigate, this.state.isCreate);
     Keyboard.dismiss();
   }
 
   onDeleteButtonPress() {
     // TODO: Prompt before delete
     const { navigate } = this.props.navigation;
-    this.props.deleteChild(this.props.child, navigate);
+    this.props.deleteActivity(this.props.activity, navigate);
     Keyboard.dismiss();
   }
 
@@ -52,7 +52,7 @@ class EditActivity extends Component {
 
   renderButtons() {
     if (this.state.isCreate) {
-      return this.renderSaveButton('Add Child');
+      return this.renderSaveButton('Add Activity');
     }
     return (
       <View>
@@ -69,39 +69,38 @@ class EditActivity extends Component {
   }
 
   render() {
-    const { name, age, timePerDay } = this.props.child;
+    const { name, description, reward } = this.props.activity;
     return (
       <View style={{ flex: 1, flexDirection: 'column' }}>
         <Text style={styles.labelStyle}>
-          Child name
+          Activity name
         </Text>
         <TextInput
           autoFocus={this.state.isCreate}
           autoCorrect={false}
           style={styles.inputStyle}
-          placeholder={'Charlie'}
-          onChangeText={value => this.props.inputChangedChild({ type: 'name', value })}
+          placeholder={'Read (30 minutes)'}
+          onChangeText={value => this.props.inputChangedActivity({ type: 'name', value })}
           value={name}
         />
         <Text style={styles.labelStyle}>
-          Age (years)
+          Activity Description
         </Text>
         <TextInput
-          keyboardType={'numeric'}
           style={styles.inputStyle}
-          placeholder={'8'}
-          onChangeText={value => this.props.inputChangedChild({ type: 'age', value })}
-          value={age}
+          placeholder={'Spend 30 minutes reading a book'}
+          onChangeText={value => this.props.inputChangedActivity({ type: 'description', value })}
+          value={description}
         />
         <Text style={styles.labelStyle}>
-          Minutes per day
+          Screen-time reward (minutes)
         </Text>
         <TextInput
           keyboardType={'numeric'}
           style={styles.inputStyle}
-          placeholder={'60'}
-          onChangeText={value => this.props.inputChangedChild({ type: 'timePerDay', value })}
-          value={timePerDay}
+          placeholder={'30'}
+          onChangeText={value => this.props.inputChangedActivity({ type: 'reward', value })}
+          value={reward}
         />
         {this.renderButtons()}
       </View>
@@ -148,9 +147,9 @@ const styles = {
 };
 
 const mapStateToProps = ({ parent }) => {
-  const { child, saving } = parent;
+  const { activity, saving } = parent;
 
-  return { child, saving };
+  return { activity, saving };
 };
 
-export default connect(mapStateToProps, { inputChangedChild, createChild, deleteChild })(EditActivity);
+export default connect(mapStateToProps, { inputChangedActivity, createActivity, deleteActivity })(EditActivity);
