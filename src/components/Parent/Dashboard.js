@@ -3,7 +3,7 @@ import { View, BackHandler, FlatList, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Icon, Text } from '@shoutem/ui';
 import BasicListItem from './BasicListItem';
-import { getChildren, setActiveChild } from '../../store/actions';
+import { setActiveChild } from '../../store/actions';
 
 class Dashboard extends Component {
   state = {};
@@ -13,10 +13,6 @@ class Dashboard extends Component {
     tabBarIcon: ({ tintColor }) => (
       <Icon name="users" style={{ color: tintColor }} />
     ),
-  }
-
-  componentWillMount() {
-    this.props.getChildren();
   }
 
   componentDidMount() {
@@ -140,4 +136,4 @@ const mapStateToProps = ({ parent, auth }) => {
 };
 
 
-export default connect(mapStateToProps, { getChildren, setActiveChild })(Dashboard);
+export default connect(mapStateToProps, { setActiveChild })(Dashboard);

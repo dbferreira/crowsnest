@@ -64,21 +64,21 @@ export const deleteChild = (child, navigate) => {
   };
 };
 
-export const getChildren = () => {
-  return (dispatch) => {
+export const setActiveChild = (child, navigate) => {
+  navigate('ParentEditChild');
+  return { type: SET_ACTIVE_CHILD, payload: child };
+};
+
+export const fetchChildren = () => {
+  return new Promise((resolve) => {
     const { uid } = firebase.auth().currentUser;
     firebase.firestore().collection('parents').doc(uid).collection('children')
       .onSnapshot((querySnapshot) => {
         const children = [];
         querySnapshot.forEach(doc => children.push({ ...doc.data(), key: doc.id }));
-        dispatch({ type: UPDATE_CHILDREN, payload: children });
+        resolve(children);
       });
-  };
-};
-
-export const setActiveChild = (child, navigate) => {
-  navigate('ParentEditChild');
-  return { type: SET_ACTIVE_CHILD, payload: child };
+  });
 };
 
 
@@ -139,3 +139,4 @@ export const getActivities = () => {
       });
   };
 };
+

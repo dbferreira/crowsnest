@@ -7,6 +7,7 @@ import ParentEditChild from './components/Parent/EditChild';
 import ParentEditActivity from './components/Parent/EditActivity';
 import LoginForm from './components/Auth/LoginForm';
 import LoadingScreen from './components/Auth/LoadingScreen';
+import ProfileSelector from './components/Auth/ProfileSelector';
 
 const routerSettings = {
   initialRouteName: 'LoadingScreen',
@@ -51,6 +52,7 @@ const parentDashboardTab = TabNavigator({
 const Router = StackNavigator({
   LoadingScreen: { screen: LoadingScreen },
   Login: { screen: LoginForm },
+  ProfileSelector: { screen: ProfileSelector },
   ParentHome: {
     screen: parentDashboardTab,
     navigationOptions: {
