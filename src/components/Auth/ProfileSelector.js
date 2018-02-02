@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Text } from '@shoutem/ui';
 import { TouchableOpacity } from '@shoutem/ui/components/TouchableOpacity';
 
-export class ProfileSelector extends Component {
+class ProfileSelector extends Component {
   static navigationOptions = {
     header: null
   };
