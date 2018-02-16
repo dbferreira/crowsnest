@@ -8,6 +8,9 @@ import ParentEditActivity from './components/Parent/EditActivity';
 import LoginForm from './components/Auth/LoginForm';
 import LoadingScreen from './components/Auth/LoadingScreen';
 import ProfileSelector from './components/Auth/ProfileSelector';
+import ChildMain from './components/Child/Main';
+import ChildTimer from './components/Child/Timer';
+import ChildActivities from './components/Child/Activities';
 
 const routerSettings = {
   initialRouteName: 'LoadingScreen',
@@ -50,9 +53,12 @@ const parentDashboardTab = TabNavigator({
 // https://reactnavigation.org/docs/navigators/tab
 
 const Router = StackNavigator({
+  // Auth
   LoadingScreen: { screen: LoadingScreen },
   Login: { screen: LoginForm },
   ProfileSelector: { screen: ProfileSelector },
+
+  // Parent
   ParentHome: {
     screen: parentDashboardTab,
     navigationOptions: {
@@ -61,7 +67,12 @@ const Router = StackNavigator({
     }
   },
   ParentEditChild: { screen: ParentEditChild },
-  ParentEditActivity: { screen: ParentEditActivity }
+  ParentEditActivity: { screen: ParentEditActivity },
+
+  // Child
+  ChildHome: { screen: ChildMain },
+  ChildTimer: { screen: ChildTimer },
+  ChildActivities: { screen: ChildActivities }
 }, routerSettings);
 
 export default Router;
