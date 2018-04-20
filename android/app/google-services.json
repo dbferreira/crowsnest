@@ -8,20 +8,12 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1044256479091:android:f3161532ed0dc541",
+        "mobilesdk_app_id": "1:1044256479091:android:4969f1206280c3f6",
         "android_client_info": {
-          "package_name": "com.crowsnest"
+          "package_name": "com.lunolia.crowsnest"
         }
       },
       "oauth_client": [
-        {
-          "client_id": "1044256479091-mn9umml4muk6ks7coat2uk60vsu4sfl3.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.crowsnest",
-            "certificate_hash": "88d6b183343cc08892f6733a808bca6efe1c47a0"
-          }
-        },
         {
           "client_id": "1044256479091-5b6u1t46g5ntno3do1hqsc90diqdanbv.apps.googleusercontent.com",
           "client_type": 3
@@ -37,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1044256479091-5b6u1t46g5ntno3do1hqsc90diqdanbv.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

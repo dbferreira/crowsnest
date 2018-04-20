@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.crowsnest"
+    package="com.lunolia.crowsnest"
     android:versionCode="1"
     android:versionName="1.0">
 
