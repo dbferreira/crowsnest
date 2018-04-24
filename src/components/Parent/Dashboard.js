@@ -43,7 +43,7 @@ class Dashboard extends Component {
     return (
       <View style={{ alignSelf: 'center' }}>
         <Button
-          title=""
+          title="+ Child"
           style={{ ...styles.roundButtonStyle, ...styles.emptyListStyle }}
           onPress={this.onCreateChildPress.bind(this)}
         >
@@ -62,7 +62,7 @@ class Dashboard extends Component {
 
     return ( // eslint-disable-line
       <Button
-        title=""
+        title="+ Child"
         style={{ ...styles.roundButtonStyle, ...styles.fabButtonStyle }}
         onPress={this.onCreateChildPress.bind(this)}
       >

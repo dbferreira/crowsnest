@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Dimensions, BackHandler, Keyboard, TextInput, Text, Button, View, Icon, Spinner, ImageBackground } from 'react-native';
+import { Dimensions, BackHandler, Keyboard, TextInput, Text, Button, View, ActivityIndicator } from 'react-native';
 // import { TextInput, Text, Button, View, Icon, Spinner, ImageBackground } from '@shoutem/ui';
 import { inputChangedLogin, loginUser } from '../../store/actions';
+import { BackgroundImage } from '../Common';
 
 class LoginForm extends Component {
   state = {};
@@ -37,12 +38,12 @@ class LoginForm extends Component {
 
   renderButton() {
     if (this.props.loading) {
-      return <Spinner />;
+      return <ActivityIndicator size="small" color="#2980B9" />
     }
     return (
       <View>
         <Button
-          title=""
+          title="Login"
           style={styles.buttonStyle}
           onPress={this.onButtonPress.bind(this)}
         >
@@ -58,7 +59,7 @@ class LoginForm extends Component {
   render() {
     return (
       <View style={styles.screenStyle}>
-        <ImageBackground
+        <BackgroundImage
           resizeMode={'cover'}
           style={{ ...styles.imageBackgroundStyle, height: this.state.dimensions.height, width: this.state.dimensions.width }}
           source={require('./loginBackground.png')} // eslint-disable-line global-require
@@ -91,7 +92,7 @@ class LoginForm extends Component {
               {this.renderButton()}
             </View>
           </View>
-        </ImageBackground>
+        </BackgroundImage>
       </View>
     );
   }

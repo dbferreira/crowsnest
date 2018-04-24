@@ -21,6 +21,7 @@ const INITIAL_STATE = {
 };
 
 const sortString = (a, b, field) => {
+	if (!a[field] || !b[field]) return 1;
   const sA = a[field].toUpperCase();
   const sB = b[field].toUpperCase();
   if (sA < sB) {
@@ -54,7 +55,9 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, saving: true };
     case SAVE_COMPLETE_ACTIVITY:
       return { ...INITIAL_STATE, saving: false };
-    case UPDATE_ACTIVITIES:
+		case UPDATE_ACTIVITIES:
+		console.log('action.payload:', action.payload);
+
       return { ...state, activities: action.payload.sort((a, b) => sortString(a, b, 'name')), loading: false };
     case SET_ACTIVE_ACTIVITY:
       return { ...state, activity: action.payload };

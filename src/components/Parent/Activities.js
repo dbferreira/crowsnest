@@ -47,7 +47,7 @@ class Activities extends Component {
     return (
       <View style={{ alignSelf: 'center' }}>
         <Button
-          title=""
+          title="+ Event"
           style={{ ...styles.roundButtonStyle, ...styles.emptyListStyle }}
           onPress={this.onCreateActivityPress.bind(this)}
         >
@@ -66,7 +66,7 @@ class Activities extends Component {
 
     return ( // eslint-disable-line
       <Button
-        title=""
+        title="+ Activity"
         style={{ ...styles.roundButtonStyle, ...styles.fabButtonStyle }}
         onPress={this.onCreateActivityPress.bind(this)}
       >

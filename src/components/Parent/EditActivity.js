@@ -41,7 +41,7 @@ class EditActivity extends Component {
   renderSaveButton(saveButtonText) {
     return (
       <Button
-        title=""
+        title="saveButtonText"
         disabled={!!this.props.saving}
         style={styles.buttonStyle}
         onPress={this.onSaveButtonPress.bind(this)}
@@ -59,7 +59,7 @@ class EditActivity extends Component {
       <View>
         {this.renderSaveButton('Update')}
         <Button
-          title=""
+          title="Delete"
           disabled={!!this.props.saving}
           style={{ ...styles.buttonStyle, ...styles.deleteButtonStyle }}
           onPress={this.onDeleteButtonPress.bind(this)}
