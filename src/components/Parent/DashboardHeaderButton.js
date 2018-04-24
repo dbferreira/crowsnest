@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Icon, TouchableOpacity } from '@shoutem/ui';
-import { View, Modal } from 'react-native';
+// import { Icon, TouchableOpacity } from '@shoutem/ui';
+import { View, Text, Modal, TouchableOpacity } from 'react-native';
 import OptionsModal from './OptionsModal';
 
 export default class DashboardHeaderButton extends Component {
@@ -25,7 +25,8 @@ export default class DashboardHeaderButton extends Component {
           <OptionsModal closeModal={this.closeModal.bind(this)} />
         </Modal>
         <TouchableOpacity onPress={() => this.openModal()}>
-          <Icon name="more-horizontal" style={styles.iconStyle} />
+          <Text style={styles.iconStyle}>...</Text>
+          {/* <Icon name="more-horizontal" style={styles.iconStyle} /> */}
         </TouchableOpacity>
       </View>
     );

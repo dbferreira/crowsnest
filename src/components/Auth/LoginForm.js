@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Dimensions, BackHandler, Keyboard } from 'react-native';
-import { TextInput, Text, Button, View, Icon, Spinner, ImageBackground } from '@shoutem/ui';
+import { Dimensions, BackHandler, Keyboard, TextInput, Text, Button, View, Icon, Spinner, ImageBackground } from 'react-native';
+// import { TextInput, Text, Button, View, Icon, Spinner, ImageBackground } from '@shoutem/ui';
 import { inputChangedLogin, loginUser } from '../../store/actions';
 
 class LoginForm extends Component {
@@ -42,10 +42,12 @@ class LoginForm extends Component {
     return (
       <View>
         <Button
+          title=""
           style={styles.buttonStyle}
           onPress={this.onButtonPress.bind(this)}
         >
-          <Icon name="lock" style={{ color: '#fff' }} />
+          {/* <Icon name="lock" style={{ color: '#fff' }} /> */}
+          <Text style={{ color: '#fff' }}>lock-icon</Text>
           <Text style={{ color: '#fff' }}>LOG IN</Text>
         </Button>
         <Text style={styles.errorStyle}>{this.props.error}</Text>

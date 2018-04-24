@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { View, BackHandler, FlatList, ActivityIndicator } from 'react-native';
+import { Button, Text, View, BackHandler, FlatList, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
-import { Button, Icon, Text } from '@shoutem/ui';
+// import { Button, Icon, Text } from '@shoutem/ui';
 import BasicListItem from './BasicListItem';
 import { setActiveChild } from '../../store/actions';
 
@@ -11,7 +11,8 @@ class Dashboard extends Component {
   static navigationOptions = {
     title: 'Children',
     tabBarIcon: ({ tintColor }) => (
-      <Icon name="users" style={{ color: tintColor }} />
+      // <Icon name="users" style={{ color: tintColor }} />
+      <Text style={{ color: tintColor }}>oOo</Text>
     ),
   }
 
@@ -42,10 +43,12 @@ class Dashboard extends Component {
     return (
       <View style={{ alignSelf: 'center' }}>
         <Button
+          title=""
           style={{ ...styles.roundButtonStyle, ...styles.emptyListStyle }}
           onPress={this.onCreateChildPress.bind(this)}
         >
-          <Icon name="add-friend" style={{ color: '#fff' }} />
+          <Text style={{ color: '#fff' }}>+ Child</Text>
+          {/* <Icon name="add-friend" style={{ color: '#fff' }} /> */}
         </Button>
         <Text>Add Child</Text>
       </View>
@@ -59,10 +62,12 @@ class Dashboard extends Component {
 
     return ( // eslint-disable-line
       <Button
+        title=""
         style={{ ...styles.roundButtonStyle, ...styles.fabButtonStyle }}
         onPress={this.onCreateChildPress.bind(this)}
       >
-        <Icon name="add-friend" style={{ color: '#fff' }} />
+        {/* <Icon name="add-friend" style={{ color: '#fff' }} /> */}
+        <Text style={{ color: '#fff' }}>+ Child</Text>
       </Button>
     );
   }

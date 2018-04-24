@@ -8,10 +8,6 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 
-import com.reactnative.photoview.PhotoViewPackage;
-import com.BV.LinearGradient.LinearGradientPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
-
 import io.invertase.firebase.RNFirebasePackage;
 // optional packages - add/remove as appropriate
 import io.invertase.firebase.admob.RNFirebaseAdMobPackage; //Firebase AdMob
@@ -44,9 +40,6 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
         new RNFirebasePackage(),
-				new PhotoViewPackage(),
-				new LinearGradientPackage(),
-				new VectorIconsPackage(),
         // add/remove these packages as appropriate
         new RNFirebaseAdMobPackage(),
         new RNFirebaseAnalyticsPackage(),

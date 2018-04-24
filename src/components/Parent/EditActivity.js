@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text, Keyboard } from 'react-native';
-import { TextInput, Button, Spinner } from '@shoutem/ui';
+import { View, Text, Keyboard, TextInput, Button, Spinner } from 'react-native';
+// import { TextInput, Button, Spinner } from '@shoutem/ui';
 import { inputChangedActivity, createActivity, deleteActivity } from '../../store/actions';
 
 class EditActivity extends Component {
@@ -41,6 +41,7 @@ class EditActivity extends Component {
   renderSaveButton(saveButtonText) {
     return (
       <Button
+        title=""
         disabled={!!this.props.saving}
         style={styles.buttonStyle}
         onPress={this.onSaveButtonPress.bind(this)}
@@ -58,6 +59,7 @@ class EditActivity extends Component {
       <View>
         {this.renderSaveButton('Update')}
         <Button
+          title=""
           disabled={!!this.props.saving}
           style={{ ...styles.buttonStyle, ...styles.deleteButtonStyle }}
           onPress={this.onDeleteButtonPress.bind(this)}

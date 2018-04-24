@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Dimensions } from 'react-native';
-import { Text, View, ImageBackground } from '@shoutem/ui';
+import { Dimensions, Text, View, ImageBackground } from 'react-native';
+// import { Text, View, ImageBackground } from '@shoutem/ui';
 import { autoLogin } from '../../store/actions';
 
 class LoadingScreen extends Component {

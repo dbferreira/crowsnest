@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { View, BackHandler, FlatList } from 'react-native';
+import { View, BackHandler, FlatList, TouchableOpacity, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { Text } from '@shoutem/ui';
-import { TouchableOpacity } from '@shoutem/ui/components/TouchableOpacity';
+// import { Text } from '@shoutem/ui';
+// import { TouchableOpacity } from '@shoutem/ui/components/TouchableOpacity';
 import BasicListItem from '../Parent/BasicListItem';
 
 class ProfileSelector extends Component {

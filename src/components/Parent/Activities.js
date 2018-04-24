@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { View, BackHandler, FlatList, ActivityIndicator } from 'react-native';
+import { View, BackHandler, FlatList, ActivityIndicator, Button, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { Button, Icon, Text } from '@shoutem/ui';
+// import { Button, Icon, Text } from '@shoutem/ui';
 import BasicListItem from './BasicListItem';
 import { getActivities, setActiveActivity } from '../../store/actions';
 
@@ -11,7 +11,8 @@ class Activities extends Component {
   static navigationOptions = {
     title: 'Activities',
     tabBarIcon: ({ tintColor }) => (
-      <Icon name="restaurant-menu" style={{ color: tintColor }} />
+      // <Icon name="restaurant-menu" style={{ color: tintColor }} />
+      <Text style={{ color: tintColor }}>=</Text>
     ),
   }
 
@@ -46,10 +47,12 @@ class Activities extends Component {
     return (
       <View style={{ alignSelf: 'center' }}>
         <Button
+          title=""
           style={{ ...styles.roundButtonStyle, ...styles.emptyListStyle }}
           onPress={this.onCreateActivityPress.bind(this)}
         >
-          <Icon name="add-event" style={{ color: '#fff' }} />
+          <Text>+Event</Text>
+          {/* <Icon name="add-event" style={{ color: '#fff' }} /> */}
         </Button>
         <Text>Add Activity</Text>
       </View>
@@ -63,10 +66,12 @@ class Activities extends Component {
 
     return ( // eslint-disable-line
       <Button
+        title=""
         style={{ ...styles.roundButtonStyle, ...styles.fabButtonStyle }}
         onPress={this.onCreateActivityPress.bind(this)}
       >
-        <Icon name="add-event" style={{ color: '#fff' }} />
+        <Text style={{ color: '#fff' }}>+ Activity</Text>
+        {/* <Icon name="add-event" style={{ color: '#fff' }} /> */}
       </Button>
     );
   }

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
-import { Icon, TouchableOpacity, Text } from '@shoutem/ui';
-import { View } from 'react-native';
+// import { Icon, TouchableOpacity, Text } from '@shoutem/ui';
+import { View, TouchableOpacity, Text } from 'react-native';
 import { logoutUser } from '../../store/actions';
 
 class OptionsModal extends Component {
@@ -26,14 +26,16 @@ class OptionsModal extends Component {
             onPress={this.logout.bind(this)}
             style={styles.itemStyle}
           >
-            <Icon name="user-profile" style={styles.itemIconStyle} />
+            {/* <Icon name="user-profile" style={styles.itemIconStyle} /> */}
+            <Text style={styles.itemIconStyle}>0</Text>
             <Text style={styles.itemTextStyle}>LOGIN AS CHILD</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={this.logout.bind(this)}
             style={styles.itemStyle}
           >
-            <Icon name="lock" style={styles.itemIconStyle} />
+            <Text style={styles.itemIconStyle}>Lock</Text>
+            {/* <Icon name="lock" style={styles.itemIconStyle} /> */}
             <Text style={styles.itemTextStyle}>LOGOUT</Text>
           </TouchableOpacity>
         </View>
@@ -41,7 +43,8 @@ class OptionsModal extends Component {
           <TouchableOpacity
             onPress={this.closeModalDialog.bind(this)}
           >
-            <Icon name="close" style={{ color: '#3498db' }} />
+            <Text style={{ color: '#3498db' }}>X</Text>
+            {/* <Icon name="close" style={{ color: '#3498db' }} /> */}
           </TouchableOpacity>
         </View>
       </View>
