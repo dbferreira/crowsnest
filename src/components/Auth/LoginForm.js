@@ -43,10 +43,11 @@ class LoginForm extends Component {
     return (
       <View>
         <Button
-          title="Login"
-          style={styles.buttonStyle}
+          title="Sign In"
+					style={styles.buttonStyle}
+					color={"#ECF0F1"}
           onPress={this.onButtonPress.bind(this)}
-        />
+        ></Button>
         <Text style={styles.errorStyle}>{this.props.error}</Text>
       </View>
     );
@@ -68,14 +69,16 @@ class LoginForm extends Component {
               returnKeyType={'next'}
               keyboardType={'email-address'}
               style={styles.inputStyle}
-              placeholder={'user@gmail.com'}
+							placeholder={'Username'}
+							placeholderTextColor={'#ECF0F1'}
               onChangeText={value => this.props.inputChangedLogin({ type: 'email', value })}
               enablesReturnKeyAutomatically
             />
             <TextInput
               autoCorrect={false}
               style={styles.inputStyle}
-              placeholder={'passw0rd'}
+              placeholder={'Password'}
+							placeholderTextColor={'#ECF0F1'}
               onChangeText={value => this.props.inputChangedLogin({ type: 'password', value })}
               secureTextEntry
               returnKeyType={'done'}
@@ -93,7 +96,7 @@ class LoginForm extends Component {
 
 const styles = {
   screenStyle: {
-   
+
   },
 
   imageBackgroundStyle: {
@@ -116,7 +119,7 @@ const styles = {
     flexGrow: 0,
     flexShrink: 0,
     // flexBasis: '30%',
-    
+
     marginBottom: 50,
     marginLeft: 30,
     marginRight: 30
@@ -129,17 +132,26 @@ const styles = {
     backgroundColor: 'rgba(0, 0, 0, 0.58)',
     borderColor: 'transparent',
     alignSelf: 'stretch',
-    borderRadius: 100,
-    // placeholderTextColor: '#ECF0F1'
+		borderRadius: 100,
+		height: 50,
+		color: '#ECF0F1',
+		padding: 20
   },
 
   buttonStyle: {
-    backgroundColor: '#2980b9',
-    borderRadius: 100
+		color: '#ECF0F1',
+		alignSelf: 'center',
+		lineHeight: 50,
+		fontSize: 30
+
   },
 
   buttonHolderStyle: {
-    marginTop: 20
+		marginTop: 40,
+		backgroundColor: '#2980b9',
+		borderRadius: 100,
+		height: 50,
+
   },
 
   errorStyle: {
