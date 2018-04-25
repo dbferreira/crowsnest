@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Dimensions, BackHandler, Keyboard, TextInput, Text, Button, View, ActivityIndicator } from 'react-native';
+import { Dimensions, BackHandler, Keyboard, TextInput, Text, Button, View, ActivityIndicator, KeyboardAvoidingView } from 'react-native';
 // import { TextInput, Text, Button, View, Icon, Spinner, ImageBackground } from '@shoutem/ui';
 import { inputChangedLogin, loginUser } from '../../store/actions';
 import { BackgroundImage } from '../Common';
@@ -46,11 +46,7 @@ class LoginForm extends Component {
           title="Login"
           style={styles.buttonStyle}
           onPress={this.onButtonPress.bind(this)}
-        >
-          {/* <Icon name="lock" style={{ color: '#fff' }} /> */}
-          <Text style={{ color: '#fff' }}>lock-icon</Text>
-          <Text style={{ color: '#fff' }}>LOG IN</Text>
-        </Button>
+        />
         <Text style={styles.errorStyle}>{this.props.error}</Text>
       </View>
     );
@@ -58,18 +54,15 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <View style={styles.screenStyle}>
+      <KeyboardAvoidingView style={styles.screenStyle} behavior="padding" enabled>
+
+      {/* <View style={styles.screenStyle}> */}
         <BackgroundImage
           resizeMode={'cover'}
           style={{ ...styles.imageBackgroundStyle, height: this.state.dimensions.height, width: this.state.dimensions.width }}
           source={require('./loginBackground.png')} // eslint-disable-line global-require
         >
           <View style={styles.loginSectionStyle}>
-            <Text
-              style={styles.headerStyle}
-            >
-              CROW&apos;S NEST
-            </Text>
             <TextInput
               autoCorrect={false}
               returnKeyType={'next'}
@@ -93,59 +86,56 @@ class LoginForm extends Component {
             </View>
           </View>
         </BackgroundImage>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
 
 const styles = {
   screenStyle: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center'
+   
   },
 
   imageBackgroundStyle: {
-    flexDirection: 'row'
+    flexDirection: 'column',
+    justifyContent: 'flex-end'
   },
 
-  headerStyle: {
-    backgroundColor: '#ffffff',
-    borderRadius: 20,
-    padding: 10,
-    paddingLeft: 30,
-    paddingRight: 30,
-    fontSize: 25,
-    marginBottom: 30,
-    elevation: 5
-  },
+  // headerStyle: {
+  //   backgroundColor: '#ffffff',
+  //   borderRadius: 20,
+  //   padding: 10,
+  //   paddingLeft: 30,
+  //   paddingRight: 30,
+  //   fontSize: 25,
+  //   marginBottom: 30,
+  //   elevation: 5
+  // },
 
   loginSectionStyle: {
-    flex: 1,
-    marginTop: 50,
+    flexGrow: 0,
+    flexShrink: 0,
+    // flexBasis: '30%',
+    
+    marginBottom: 50,
     marginLeft: 30,
-    marginRight: 30,
-    alignItems: 'center',
-    justifyContent: 'center'
+    marginRight: 30
+    // alignItems: 'center',
+    // justifyContent: 'center'
   },
 
   inputStyle: {
     marginTop: 10,
-    backgroundColor: '#ffffffee',
-    borderColor: '#595959',
-    borderWidth: 1,
-    elevation: 5,
+    backgroundColor: 'rgba(0, 0, 0, 0.58)',
+    borderColor: 'transparent',
     alignSelf: 'stretch',
-    borderRadius: 5,
+    borderRadius: 100,
+    // placeholderTextColor: '#ECF0F1'
   },
 
   buttonStyle: {
-    borderWidth: 0,
     backgroundColor: '#2980b9',
-    width: 150,
-    elevation: 5,
-    borderRadius: 5
+    borderRadius: 100
   },
 
   buttonHolderStyle: {
