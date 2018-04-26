@@ -1,16 +1,10 @@
 import React, { PureComponent } from "react";
 import { ImageBackground, Platform } from "react-native";
-// import _ from "lodash";
-
-// import { connectStyle } from '@shoutem/theme';
-// import { connectAnimation } from "@shoutem/animation";
 
 // A valid source is either an object with an uri key or a number (from a `require` call)
 const isValidSource = source => {
 	return typeof source === 'number' || typeof source === 'object'
 }
-  // _.isNumber(source) || (_.isObject(source) && source.uri);
-
 let externalPropsTransformer = null;
 
 class BackgroundImage extends PureComponent {
