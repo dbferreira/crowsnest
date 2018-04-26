@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Dimensions, BackHandler, Keyboard, TextInput, Text, Button, View, ActivityIndicator, KeyboardAvoidingView } from 'react-native';
+import { Dimensions, BackHandler, Keyboard, TextInput, Text, TouchableOpacity, View, ActivityIndicator, KeyboardAvoidingView, Platform } from 'react-native';
 // import { TextInput, Text, Button, View, Icon, Spinner, ImageBackground } from '@shoutem/ui';
 import { inputChangedLogin, loginUser } from '../../store/actions';
 import { BackgroundImage } from '../Common';
@@ -38,16 +38,14 @@ class LoginForm extends Component {
 
   renderButton() {
     if (this.props.loading) {
-      return <ActivityIndicator size="small" color="#2980B9" />
+      return <ActivityIndicator size="small" color="#ECF0F1" />
     }
     return (
       <View>
-        <Button
-          title="Sign In"
-					style={styles.buttonStyle}
-					color={"#ECF0F1"}
-          onPress={this.onButtonPress.bind(this)}
-        ></Button>
+        <TouchableOpacity
+          onPress={this.onButtonPress.bind(this)}        >
+          <Text style={styles.buttonStyle}>Sign In</Text>
+        </TouchableOpacity>
         <Text style={styles.errorStyle}>{this.props.error}</Text>
       </View>
     );
@@ -57,11 +55,10 @@ class LoginForm extends Component {
     return (
       <KeyboardAvoidingView style={styles.screenStyle} behavior="padding" enabled>
 
-      {/* <View style={styles.screenStyle}> */}
         <BackgroundImage
           resizeMode={'cover'}
           style={{ ...styles.imageBackgroundStyle, height: this.state.dimensions.height, width: this.state.dimensions.width }}
-          source={require('./loginBackground.png')} // eslint-disable-line global-require
+          source={require('./loginBackground.jpg')} // eslint-disable-line global-require
         >
           <View style={styles.loginSectionStyle}>
             <TextInput
@@ -69,8 +66,8 @@ class LoginForm extends Component {
               returnKeyType={'next'}
               keyboardType={'email-address'}
               style={styles.inputStyle}
-							placeholder={'Username'}
-							placeholderTextColor={'#ECF0F1'}
+              placeholder={'Username'}
+              placeholderTextColor={'#ECF0F1'}
               onChangeText={value => this.props.inputChangedLogin({ type: 'email', value })}
               enablesReturnKeyAutomatically
             />
@@ -78,7 +75,7 @@ class LoginForm extends Component {
               autoCorrect={false}
               style={styles.inputStyle}
               placeholder={'Password'}
-							placeholderTextColor={'#ECF0F1'}
+              placeholderTextColor={'#ECF0F1'}
               onChangeText={value => this.props.inputChangedLogin({ type: 'password', value })}
               secureTextEntry
               returnKeyType={'done'}
@@ -104,58 +101,47 @@ const styles = {
     justifyContent: 'flex-end'
   },
 
-  // headerStyle: {
-  //   backgroundColor: '#ffffff',
-  //   borderRadius: 20,
-  //   padding: 10,
-  //   paddingLeft: 30,
-  //   paddingRight: 30,
-  //   fontSize: 25,
-  //   marginBottom: 30,
-  //   elevation: 5
-  // },
-
   loginSectionStyle: {
     flexGrow: 0,
     flexShrink: 0,
-    // flexBasis: '30%',
-
     marginBottom: 50,
     marginLeft: 30,
     marginRight: 30
-    // alignItems: 'center',
-    // justifyContent: 'center'
   },
 
   inputStyle: {
-    marginTop: 10,
     backgroundColor: 'rgba(0, 0, 0, 0.58)',
     borderColor: 'transparent',
     alignSelf: 'stretch',
-		borderRadius: 100,
-		height: 50,
-		color: '#ECF0F1',
-		padding: 20
+    borderRadius: 100,
+    height: 50,
+    padding: 0,
+    margin: 0,
+    marginTop: 10,
+    borderWidth: 0,
+    color: '#ECF0F1',
+    fontSize: 16,
+    fontWeight: '300',
+    fontFamily: Platform.OS === 'android' ? 'sans-serif-light' : undefined,
+    paddingLeft: 20
   },
 
   buttonStyle: {
-		color: '#ECF0F1',
-		alignSelf: 'center',
-		lineHeight: 50,
-		fontSize: 30
-
+    alignSelf: 'center',
+    lineHeight: 50,
+    fontSize: 16,
+    color: "#ECF0F1"
   },
 
   buttonHolderStyle: {
-		marginTop: 40,
-		backgroundColor: '#2980b9',
-		borderRadius: 100,
-		height: 50,
-
+    marginTop: 30,
+    backgroundColor: '#2980b9',
+    borderRadius: 100,
+    height: 50,
   },
 
   errorStyle: {
-    color: 'red',
+    color: '#ECF0F1',
     marginTop: 10
   }
 };
