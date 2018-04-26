@@ -20,10 +20,10 @@ export const inputChangedLogin = (payload) => {
 export const loginUser = ({ email, password, navigate }) => {
   return (dispatch) => {
     dispatch({ type: LOGIN_USER });
-    firebase.auth().signInWithEmailAndPassword(email, password)
+    firebase.auth().signInAndRetrieveDataWithEmailAndPassword(email, password)
       .catch((error) => {
         console.info('Auth error: ', error);
-        firebase.auth().createUserWithEmailAndPassword(email, password)
+        firebase.auth().createUserAndRetrieveDataWithEmailAndPassword(email, password)
           .then(user => loginUserSuccess(user, navigate, dispatch))
           .catch(() => loginUserFail(dispatch));
       });

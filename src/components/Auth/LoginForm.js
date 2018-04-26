@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Dimensions, BackHandler, Keyboard, TextInput, Text, TouchableOpacity, View, ActivityIndicator, KeyboardAvoidingView, Platform, Image } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Feather';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { inputChangedLogin, loginUser } from '../../store/actions';
 import { BackgroundImage } from '../Common';
 
@@ -58,7 +59,7 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView style={styles.screenStyle} behavior="padding" enabled>
+      <KeyboardAwareScrollView style={styles.screenStyle}>
 
         <BackgroundImage
           resizeMode={'cover'}
@@ -108,7 +109,7 @@ class LoginForm extends Component {
             </View>
           </View>
         </BackgroundImage>
-      </KeyboardAvoidingView>
+      </KeyboardAwareScrollView>
     );
   }
 }
