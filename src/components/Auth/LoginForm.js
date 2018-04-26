@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { inputChangedLogin, loginUser } from '../../store/actions';
 import { BackgroundImage } from '../Common';
+import { primaryColor, secondaryColor, greyColor } from '../../styles/variables';
 
 class LoginForm extends Component {
   state = {};
@@ -40,61 +41,61 @@ class LoginForm extends Component {
 
   renderButton() {
     if (this.props.loading) {
-      return <ActivityIndicator size="small" color="#ECF0F1" />
+      return <ActivityIndicator size="small" color={greyColor} />
     }
     return (
       <View>
         <TouchableOpacity
           onPress={this.onButtonPress.bind(this)}>
-          <LinearGradient colors={['#2980b9', '#2C3E50']}
+          <LinearGradient colors={[primaryColor, secondaryColor]}
             start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
             style={styles.linearGradient}>
-            <Text style={styles.buttonStyle}>Sign In</Text>
+            <Text style={styles.button}>Sign In</Text>
           </LinearGradient>
         </TouchableOpacity>
-        <Text style={styles.errorStyle}>{this.props.error}</Text>
+        <Text style={styles.error}>{this.props.error}</Text>
       </View>
     );
   }
 
   render() {
+    const { imageBackground, logo, logoImage, loginSection, textInputCombined, textFieldIcon, input, buttonHolder } = styles;
     return (
-      <KeyboardAwareScrollView style={styles.screenStyle}>
-
+      <KeyboardAwareScrollView>
         <BackgroundImage
           resizeMode={'cover'}
-          style={{ ...styles.imageBackgroundStyle, height: this.state.dimensions.height, width: this.state.dimensions.width }}
+          style={{ ...imageBackground, height: this.state.dimensions.height, width: this.state.dimensions.width }}
           source={require('./loginBackground.jpg')} // eslint-disable-line global-require
         >
-          <View style={styles.logo}>
+          <View style={logo}>
             <Image
-              style={styles.logoImage}
+              style={logoImage}
               source={require('./Logo.png')}
             />
           </View>
-          <View style={styles.loginSectionStyle}>
-            <View style={styles.textInputCombined}>
-              <Icon style={styles.textFieldIcon} name="user" size={18} color="#ECF0F1" />
+          <View style={loginSection}>
+            <View style={textInputCombined}>
+              <Icon style={textFieldIcon} name="user" size={18} color={greyColor} />
               <TextInput
                 autoCorrect={false}
                 returnKeyType={'next'}
                 keyboardType={'email-address'}
-                style={styles.inputStyle}
+                style={input}
                 placeholder={'Username'}
-                placeholderTextColor={'#ECF0F1'}
+                placeholderTextColor={greyColor}
                 onChangeText={value => this.props.inputChangedLogin({ type: 'email', value })}
                 enablesReturnKeyAutomatically
                 underlineColorAndroid="transparent"
               />
             </View>
 
-            <View style={styles.textInputCombined}>
-              <Icon style={styles.textFieldIcon} name="lock" size={16} color="#ECF0F1" />
+            <View style={textInputCombined}>
+              <Icon style={textFieldIcon} name="lock" size={16} color={greyColor} />
               <TextInput
                 autoCorrect={false}
-                style={styles.inputStyle}
+                style={input}
                 placeholder={'Password'}
-                placeholderTextColor={'#ECF0F1'}
+                placeholderTextColor={greyColor}
                 onChangeText={value => this.props.inputChangedLogin({ type: 'password', value })}
                 secureTextEntry
                 returnKeyType={'done'}
@@ -103,8 +104,7 @@ class LoginForm extends Component {
               />
             </View>
 
-            <View style={styles.buttonHolderStyle}>
-
+            <View style={buttonHolder}>
               {this.renderButton()}
             </View>
           </View>
@@ -115,11 +115,7 @@ class LoginForm extends Component {
 }
 
 const styles = {
-  screenStyle: {
-
-  },
-
-  imageBackgroundStyle: {
+  imageBackground: {
     flexDirection: 'column',
   },
 
@@ -134,7 +130,7 @@ const styles = {
     height: 100
   },
 
-  loginSectionStyle: {
+  loginSection: {
     flexGrow: 0,
     flexShrink: 0,
     marginBottom: 50,
@@ -142,19 +138,19 @@ const styles = {
     marginRight: 30
   },
 
-  inputStyle: {
+  input: {
     flex: 1,
     borderColor: 'transparent',
     alignSelf: 'stretch',
     height: 50,
     padding: 0,
+    paddingLeft: 20,
     margin: 0,
     borderWidth: 0,
-    color: '#ECF0F1',
+    color: greyColor,
     fontSize: 16,
     fontWeight: '300',
     fontFamily: Platform.OS === 'android' ? 'sans-serif-light' : undefined,
-    paddingLeft: 20
   },
 
   textInputCombined: {
@@ -171,24 +167,24 @@ const styles = {
     paddingLeft: 30
   },
 
-  buttonStyle: {
+  button: {
     alignSelf: 'center',
-    lineHeight: 50,
     fontSize: 16,
-    color: "#ECF0F1"
+    color: greyColor
   },
 
   linearGradient: {
+    justifyContent: 'center',
     borderRadius: 100,
     height: 50,
   },
 
-  buttonHolderStyle: {
+  buttonHolder: {
     marginTop: 30
   },
 
-  errorStyle: {
-    color: '#ECF0F1',
+  error: {
+    color: greyColor,
     alignSelf: 'center',
     marginTop: 10
   }
