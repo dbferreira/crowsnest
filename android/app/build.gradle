@@ -162,9 +162,11 @@ dependencies {
         transitive = false
     }
 
+    compile project(':react-native-linear-gradient')
+
     // RNFirebase required dependencies
     implementation "com.google.firebase:firebase-core:12.0.1"
-    implementation "com.google.android.gms:play-services-base:12.0.1"
+    implementation "com.google.android.gms:play-services-base:12.0.1"    
 
     // RNFirebase optional dependencies
     implementation "com.google.firebase:firebase-ads:12.0.1"
@@ -192,5 +194,11 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+
+project.ext.vectoricons = [
+    iconFontNames: [ 'Feather.ttf' ] // Name of the font files you want to copy
+]
+
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 
 apply plugin: 'com.google.gms.google-services'

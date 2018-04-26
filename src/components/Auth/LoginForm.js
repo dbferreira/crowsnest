@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Dimensions, BackHandler, Keyboard, TextInput, Text, TouchableOpacity, View, ActivityIndicator, KeyboardAvoidingView, Platform } from 'react-native';
-// import { TextInput, Text, Button, View, Icon, Spinner, ImageBackground } from '@shoutem/ui';
+import { Dimensions, BackHandler, Keyboard, TextInput, Text, TouchableOpacity, View, ActivityIndicator, KeyboardAvoidingView, Platform, Image } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/Feather';
 import { inputChangedLogin, loginUser } from '../../store/actions';
 import { BackgroundImage } from '../Common';
 
@@ -43,8 +44,12 @@ class LoginForm extends Component {
     return (
       <View>
         <TouchableOpacity
-          onPress={this.onButtonPress.bind(this)}        >
-          <Text style={styles.buttonStyle}>Sign In</Text>
+          onPress={this.onButtonPress.bind(this)}>
+          <LinearGradient colors={['#2980b9', '#2C3E50']}
+            start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
+            style={styles.linearGradient}>
+            <Text style={styles.buttonStyle}>Sign In</Text>
+          </LinearGradient>
         </TouchableOpacity>
         <Text style={styles.errorStyle}>{this.props.error}</Text>
       </View>
@@ -60,28 +65,45 @@ class LoginForm extends Component {
           style={{ ...styles.imageBackgroundStyle, height: this.state.dimensions.height, width: this.state.dimensions.width }}
           source={require('./loginBackground.jpg')} // eslint-disable-line global-require
         >
+          <View style={styles.logo}>
+            <Image
+              style={styles.logoImage}
+              source={require('./Logo.png')}
+            />
+          </View>
           <View style={styles.loginSectionStyle}>
-            <TextInput
-              autoCorrect={false}
-              returnKeyType={'next'}
-              keyboardType={'email-address'}
-              style={styles.inputStyle}
-              placeholder={'Username'}
-              placeholderTextColor={'#ECF0F1'}
-              onChangeText={value => this.props.inputChangedLogin({ type: 'email', value })}
-              enablesReturnKeyAutomatically
-            />
-            <TextInput
-              autoCorrect={false}
-              style={styles.inputStyle}
-              placeholder={'Password'}
-              placeholderTextColor={'#ECF0F1'}
-              onChangeText={value => this.props.inputChangedLogin({ type: 'password', value })}
-              secureTextEntry
-              returnKeyType={'done'}
-              enablesReturnKeyAutomatically
-            />
+            <View style={styles.textInputCombined}>
+              <Icon style={styles.textFieldIcon} name="user" size={18} color="#ECF0F1" />
+              <TextInput
+                autoCorrect={false}
+                returnKeyType={'next'}
+                keyboardType={'email-address'}
+                style={styles.inputStyle}
+                placeholder={'Username'}
+                placeholderTextColor={'#ECF0F1'}
+                onChangeText={value => this.props.inputChangedLogin({ type: 'email', value })}
+                enablesReturnKeyAutomatically
+                underlineColorAndroid="transparent"
+              />
+            </View>
+
+            <View style={styles.textInputCombined}>
+              <Icon style={styles.textFieldIcon} name="lock" size={16} color="#ECF0F1" />
+              <TextInput
+                autoCorrect={false}
+                style={styles.inputStyle}
+                placeholder={'Password'}
+                placeholderTextColor={'#ECF0F1'}
+                onChangeText={value => this.props.inputChangedLogin({ type: 'password', value })}
+                secureTextEntry
+                returnKeyType={'done'}
+                enablesReturnKeyAutomatically
+                underlineColorAndroid="transparent"
+              />
+            </View>
+
             <View style={styles.buttonHolderStyle}>
+
               {this.renderButton()}
             </View>
           </View>
@@ -98,7 +120,17 @@ const styles = {
 
   imageBackgroundStyle: {
     flexDirection: 'column',
-    justifyContent: 'flex-end'
+  },
+
+  logo: {
+    flex: 1,
+    marginTop: 30,
+    alignSelf: 'center',
+  },
+
+  logoImage: {
+    width: 70,
+    height: 100
   },
 
   loginSectionStyle: {
@@ -110,20 +142,32 @@ const styles = {
   },
 
   inputStyle: {
-    backgroundColor: 'rgba(0, 0, 0, 0.58)',
+    flex: 1,
     borderColor: 'transparent',
     alignSelf: 'stretch',
-    borderRadius: 100,
     height: 50,
     padding: 0,
     margin: 0,
-    marginTop: 10,
     borderWidth: 0,
     color: '#ECF0F1',
     fontSize: 16,
     fontWeight: '300',
     fontFamily: Platform.OS === 'android' ? 'sans-serif-light' : undefined,
     paddingLeft: 20
+  },
+
+  textInputCombined: {
+    height: 50,
+    marginTop: 20,
+    backgroundColor: 'rgba(0, 0, 0, 0.58)',
+    borderRadius: 100,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  textFieldIcon: {
+    paddingLeft: 30
   },
 
   buttonStyle: {
@@ -133,15 +177,18 @@ const styles = {
     color: "#ECF0F1"
   },
 
-  buttonHolderStyle: {
-    marginTop: 30,
-    backgroundColor: '#2980b9',
+  linearGradient: {
     borderRadius: 100,
     height: 50,
   },
 
+  buttonHolderStyle: {
+    marginTop: 30
+  },
+
   errorStyle: {
     color: '#ECF0F1',
+    alignSelf: 'center',
     marginTop: 10
   }
 };

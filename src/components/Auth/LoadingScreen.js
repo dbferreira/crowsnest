@@ -21,7 +21,7 @@ class LoadingScreen extends Component {
         <ImageBackground
           resizeMode={'cover'}
           style={styles.imageBackgroundStyle}
-          source={require('./loginBackground.png')} // eslint-disable-line global-require
+          source={require('./loginBackground.jpg')} // eslint-disable-line global-require
         >
           <Text
             style={styles.headerStyle}
