@@ -5,7 +5,15 @@ target 'CrowsNest' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
   # use_frameworks!
 
-  # Pods for CrowsNest
+	# Pods for CrowsNest
+	pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+	pod 'React', :path => '../node_modules/react-native', :subspecs => [
+		'DevSupport',
+		'RCTNetwork'
+	]
+
+	pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+	pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
   # Required by RNFirebase
   pod 'Firebase/Core'
